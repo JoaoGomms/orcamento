@@ -1,0 +1,158 @@
+<img src="https://santalista.com/assets/global/light_logo.png" class="noScreen img-fluid img mx-auto">
+
+<form autocomplete="off" method="post" action="/novo-orcamento">
+    <div class="form-group">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Cliente</span>
+                        </div>
+                        <input type="text" name="cliente" class="form-control" autofocus
+                               value="{{#if cabecalho}}{{#each cabecalho}}{{this.cliente}}{{/each}}{{/if}}">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Data</span>
+                        </div>
+                        <input class="form-control"  id="date" name="data" type="text" value="{{#if cabecalho}}{{#each cabecalho}}{{this.data}}{{/each}}{{/if}}"/>
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Endereço</span>
+                        </div>
+                        <input type="text" name="endereco" class="form-control" autofocus
+                               value="{{#if cabecalho}}{{#each cabecalho}}{{this.endereco}}{{/each}}{{/if}}">
+                    </div>
+
+                </div>
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Telefone</span>
+                        </div>
+                        <input type="text" name="telefone" class="form-control" autofocus
+                               value="{{#if cabecalho}}{{#each cabecalho}}{{this.telefone}}{{/each}}{{/if}}">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container noprint">
+        <div class="form-group">
+            <div class="row">
+
+                    <div class="col-1">
+                        <input type="text" name="pecas" placeholder="Peças" class="form-control" autofocus>
+                    </div>
+
+                    <div class="col-2">
+                        <input type="text" name="medidas" placeholder="Medidas" class="form-control" autofocus>
+                    </div>
+
+                    <div class="col-3">
+                        <input type="text" name="material" placeholder="Material" class="form-control" autofocus>
+                    </div>
+
+                    <div class="col-4">
+                        <textarea type="text" name="referencia" placeholder="Referência" class="form-control" autofocus></textarea>
+                    </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <input class="btn btn-primary mb-2" type="submit" value="Adicionar">
+                        </div>
+                        <div class="col">
+                            <a class="btn btn-info bmd-btn-fab" href="/limpar">Limpar</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+<div class="row total">
+
+
+    <div style="width: 99%; position: absolute; margin-left: 0.5%">
+
+        <!--Card image-->
+        {{#if orcamento}}
+            <table class="table table-striped table-sm table-hover display" id="orcTable">
+                <thead class="">
+                <tr>
+                    <th style="width: 5% !important;">Peças</th>
+                    <th style="width: 25% !important;" >Medidas</th>
+                    <th style="width: 25% !important;">Material</th>
+                    <th style="width: 50% !important;" >Referencia</th>
+                    <th style="width: 8% !important;" class="noprint" scope="col">Ações</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {{#each orcamento}}
+
+                    <tr>
+                        <th  style="word-break:break-word; overflow-wrap: break-word;" scope="col">{{this.pecas}}</th>
+                        <th style="word-break:break-word; overflow-wrap: break-word;" scope="col">{{this.medidas}}</th>
+                        <th style="word-break:break-word; overflow-wrap: break-word;" scope="col">{{this.material}}</th>
+                        <th style="word-break:break-word; overflow-wrap: break-word;" scope="col">{{this.referencia}}</th>
+                        <th style="word-break:break-word; overflow-wrap: break-word;" scope="col">
+                            <div class=" noprint form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <a class="btn btn-danger bmd-btn-fab"
+                                           href="/delete-orcamento/{{@key}}">Deletar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+
+
+                {{/each}}
+                </tbody>
+            </table>
+        {{else}}
+            <table class="table table-responsive display cell-border" style="width:100%" id="orcTable">
+                <thead class="thead-dark">
+                <tr>
+                    <th class="w-10">Peças</th>
+                    <th class="w-25">Medidas</th>
+                    <th class="w-25">Material</th>
+                    <th class="w-50">Referencia</th>
+                    <th class="w-10 noprint" scope="col">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        {{/if}}
+
+    </div>
+
+
+</div>
